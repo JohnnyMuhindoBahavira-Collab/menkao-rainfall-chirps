@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "Menkao rainfall analysis from CHIRPS daily statistics (1981-2025)"
+message: "If you use this repository, please cite the software and the related article."
+type: software
+authors:
+  - family-names: "Muhindo Bahavira"
+    given-names: "Johnny"
+    affiliation: "Section Bâtiment et Travaux Publics, Institut National du Bâtiment et des Travaux Publics (INBTP), Kinshasa, Democratic Republic of the Congo"
+    email: "johnny.muhindo@gmail.com"
+  - family-names: "Kalume Kabengele"
+    given-names: "Espérant"
+    affiliation: "Section Génie Rural, Institut National du Bâtiment et des Travaux Publics (INBTP), Kinshasa, Democratic Republic of the Congo"
+  - family-names: "Kabadi Lelo Odimba"
+    given-names: "Papy"
+    affiliation: "Section Génie Rural, Institut National du Bâtiment et des Travaux Publics (INBTP), Kinshasa, Democratic Republic of the Congo"
+repository-code: "https://github.com/JohnnyMuhindoBahavira-Collab/menkao-rainfall-chirps"
+url: "https://github.com/JohnnyMuhindoBahavira-Collab/menkao-rainfall-chirps"
+license: "MIT"
+abstract: >-
+  Reproducible analytical workflow for daily CHIRPS-derived rainfall statistics
+  over the Menkao region, Kinshasa, Democratic Republic of the Congo,
+  covering data audit, descriptive climatology, trends, rainfall extremes,
+  generalised extreme value modelling, quantile regression, regime shifts,
+  Standardised Precipitation Index analysis, Innovative Trend Analysis,
+  and comparative synthesis.
+keywords:
+  - rainfall
+  - CHIRPS
+  - Kinshasa
+  - Menkao
+  - extremes
+  - trend analysis
+version: 1.0.0
+date-released: 2026-04-23

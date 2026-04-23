@@ -1,0 +1,87 @@
+
+// =========================
+// 0. Region Of Interest (roi) : la zone d'étude
+// =========================
+
+var roi = ee.FeatureCollection("users/geologieinbtp/MENKAO");
+
+// =========================
+// 1. COLLECTION CHIRPS
+// =========================
+
+var chirps = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY");
+
+
+Map.centerObject(roi);
+
+
+// =========================
+// 3. PERIODE D'ETUDE
+// =========================
+
+var startDate = ee.Date('1981-01-01');
+var endDate   = ee.Date('2026-01-01');
+
+
+// =========================
+// 4. CREER LISTE DES DATES
+// =========================
+
+var nDays = endDate.difference(startDate, 'day');
+
+var dates = ee.List.sequence(0, nDays.subtract(1))
+  .map(function(d) {
+    return startDate.advance(d, 'day');
+  });
+
+
+// =========================
+// 5. FONCTION CHIRPS JOURNALIER
+// =========================
+
+function getChirpsDaily(date) {
+
+  date = ee.Date(date);
+
+  var img = chirps
+      .filterDate(date, date.advance(1, 'day'))
+      .first();
+
+  var stats = img.reduceRegion({
+    reducer: ee.Reducer.mean()
+                .combine(ee.Reducer.min(), '', true)
+                .combine(ee.Reducer.max(), '', true),
+    geometry: roi,
+    scale: 5566,
+    maxPixels: 1e13
+  });
+
+  return ee.Feature(null, {
+    date: date.format('YYYY-MM-dd'),
+    CHIRPS_mean_mm: stats.get('precipitation_mean'),
+    CHIRPS_min_mm: stats.get('precipitation_min'),
+    CHIRPS_max_mm: stats.get('precipitation_max')
+  });
+}
+
+
+// =========================
+// 6. CREER FEATURE COLLECTION
+// =========================
+
+var chirpsDaily = ee.FeatureCollection(
+  dates.map(getChirpsDaily)
+);
+
+
+// =========================
+// 7. EXPORT CSV
+// =========================
+
+Export.table.toDrive({
+  collection: chirpsDaily,
+  description: 'CHIRPS_Daily_Mean_Min_Max',
+  folder: 'GEE_Exports',
+  fileNamePrefix: 'CHIRPS_Daily_Stats',
+  fileFormat: 'CSV'
+});
