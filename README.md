@@ -20,7 +20,7 @@ https://github.com/JohnnyMuhindoBahavira-Collab/menkao-rainfall-chirps
 
 ## What this repository reproduces
 
-The scripts reproduce the analytical workflow corresponding to the first eight analytical packs:
+The scripts reproduce the analytical workflow corresponding to eight analytical packs:
 
 1. Data audit and descriptive climatology
 2. Trends and break diagnostics
@@ -31,7 +31,6 @@ The scripts reproduce the analytical workflow corresponding to the first eight a
 7. Innovative Trend Analysis
 8. Comparative synthesis across methods
 
-Narrative discussion and prose generation are intentionally excluded so that the repository remains focused on reproducible analytical outputs.
 
 ## Repository structure
 
@@ -39,7 +38,6 @@ Narrative discussion and prose generation are intentionally excluded so that the
 .
 ├── data/
 │   └── raw/
-├── docs/
 ├── outputs/
 ├── scripts/
 ├── src/
@@ -102,10 +100,7 @@ Each script writes its own outputs to `outputs/<pack_name>/`, including:
 - The scripts do not depend on `/mnt/data/...` or any local notebook-specific paths.
 - The workflow is designed to be executable from the repository root.
 
-## Citation
-
-GitHub will read `CITATION.cff` and show a citation suggestion in the repository interface. Zenodo will use `.zenodo.json` metadata when archiving GitHub releases.
 
 ## Data provenance note
 
-The raw rainfall table is derived from CHIRPS daily precipitation data extracted in Google Earth Engine over the Menkao study area. Users should verify any redistribution requirements associated with source datasets and derivative products before public redistribution.
+The raw rainfall table is derived from CHIRPS daily precipitation data extracted in Google Earth Engine over the Menkao study area.
